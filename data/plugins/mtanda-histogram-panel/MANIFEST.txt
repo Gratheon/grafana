@@ -1,0 +1,41 @@
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "community",
+  "signedByOrg": "grafana",
+  "signedByOrgName": "Grafana Labs",
+  "plugin": "mtanda-histogram-panel",
+  "version": "0.1.7",
+  "time": 1622740985068,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "histogram_ctrl.js": "db83addbc643282a38049efc1d9a150407c3eb84a2d76d06c356d32afb56ff51",
+    "histogram_tooltip.js": "004345d0ea977b23790a4628faa208f1d6fcf3cbfadb5ca02a06d82bc4ccc315",
+    "histogram.js": "6eaa268e8651e9f6ee55cdc010cc3b761a877400d6f4bfcd583158ede5d9b0b7",
+    "histogram_ctrl.js.map": "7e20201ed7c902442cf362f5af84becff65cb72008c624afe10b3d65942610b0",
+    "tab_display.html": "9dc92ac4cf2cc8249a5121833787ac8b360112fb938d0777b8d62a9ed8466765",
+    "histogram_tooltip.js.map": "26332952d9ac5f60273d28b0305fe51a1e0231be9a5fa9f13baa7306b6b8ed65",
+    "histogram.js.map": "ed7129af7691986dcb8cb209d301a86596e5dc1463ffcdf0355f14995e931ce0",
+    "images/histogram.png": "5e12d396194ce970ba53f9a876b2b7beea94415ebb3406a57e7690ec98cdd188",
+    "module.js.map": "174e1714ffef6acc772690095c82f515cb4438eb05a99274d8b2d49c98892d32",
+    "tab_options.html": "f68a53e5a96c211600ff6ec14a3cd971f1bb62fbdccc4f5b199027d0485e9073",
+    "plugin.json": "0a898aa4e8542ae010955ce08043a571f990b28a765415b6497e9861048cf41a",
+    "README.md": "0532f0611dab1cd18b51c44c226a2f8411ffd67716bcf21789c60636eb57f8f7",
+    "template.js.map": "03e1a0c8a13f2143a0e4da10f9698a535e960119fc277b93bebaaabd472e39c8",
+    "module.js": "98394fa16c8718d0a4d3419c2eda5eab2eea386f17cbb7bb50541f29f0d2d1f2",
+    "template.js": "0abf52fcdfe3e7a5ea1120a948418ae53224becba96f9959be0c2a8b1ba3287e"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+Version: OpenPGP.js v4.10.1
+Comment: https://openpgpjs.org
+
+wqAEARMKAAYFAmC5D/kACgkQfk0ManCIZudVMwIHUu5XlSnxzy1W/dNb/TgO
++GyG42LTx9VpuMar5ns/5UQRjvLnPE/0TYbMh4zJvgfdDPA30hPIPRtIDI1N
+BuvBnSwCB0lcrQTLkau80ONMswqjeejluEqRgBDD0SEMisOzABhmYJf7ZjVv
+D5PzSfxPU9vwwfMHPQR9uctnISYWxG8ljxJQ
+=l+Sr
+-----END PGP SIGNATURE-----

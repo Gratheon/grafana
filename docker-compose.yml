@@ -11,7 +11,7 @@ services:
       - GF_DATABASE_HOST=mysql:3306
       - GF_DATABASE_MAX_OPEN_CONN=300
       - GF_SESSION_PROVIDER=mysql
-      - GF_SERVER_ROOT_URL=http://localhost:9000/
+      - GF_SERVER_ROOT_URL=https://grafana.gratheon.com/
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,percona-percona-app,jdbranham-diagram-panel,mtanda-histogram-panel,natel-influx-admin-panel
       - GF_SERVER_ROUTER_LOGGING=true
       - GF_allow_embedding=true
@@ -21,6 +21,6 @@ services:
     ports:
      - '9000:3000'
     volumes:
-      - ./grafana-config:/var/lib/grafana
+      - ./data:/var/lib/grafana
       - ./config/config.dev.ini:/etc/grafana/grafana.ini
     network_mode: host

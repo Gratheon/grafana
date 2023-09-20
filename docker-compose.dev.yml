@@ -21,7 +21,7 @@ services:
     ports:
      - '9000:3000'
     volumes:
-      - $PWD/grafana/grafana-config:/var/lib/grafana
+      - $PWD/grafana/data:/var/lib/grafana
       - $PWD/grafana/config/config.dev.ini:/etc/grafana/grafana.ini
     network_mode: bridge
     networks:
