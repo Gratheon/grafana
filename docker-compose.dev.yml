@@ -19,7 +19,7 @@ services:
       - GF_DATABASE_SSL_MODE=disable
       - GF_LOG_FILTERS=alerting.notifier=debug,alerting.notifier.slack:debug,auth:debug
     ports:
-     - '9000:3000'
+     - '9000:9000'
     volumes:
       - $PWD/grafana/data:/var/lib/grafana
       - $PWD/grafana/config/config.dev.ini:/etc/grafana/grafana.ini
