@@ -23,8 +23,4 @@ services:
     volumes:
       - ./grafana-config:/var/lib/grafana
       - ./config/config.dev.ini:/etc/grafana/grafana.ini
-    network_mode: bridge
-    networks:
-      - gratheon
-networks:
-  gratheon:
+    network_mode: host
