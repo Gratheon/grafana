@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  grafana:
+    image: grafana/grafana-oss
+    restart: unless-stopped
+    environment:
+      - GF_DATABASE_NAME=grafana
+      - GF_DATABASE_USER=root
+      - GF_DATABASE_PASSWORD=test
+      - GF_DATABASE_TYPE=mysql
+      - GF_DATABASE_HOST=mysql:3306
+      - GF_DATABASE_MAX_OPEN_CONN=300
+      - GF_SESSION_PROVIDER=mysql
+      - GF_SERVER_ROOT_URL=http://localhost:9000/
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,percona-percona-app,jdbranham-diagram-panel,mtanda-histogram-panel,natel-influx-admin-panel
+      - GF_SERVER_ROUTER_LOGGING=true
+      - GF_allow_embedding=true
+      - GF_LOG_CONSOLE_FORMAT=json
+      - GF_DATABASE_SSL_MODE=disable
+      - GF_LOG_FILTERS=alerting.notifier=debug,alerting.notifier.slack:debug,auth:debug
+    ports:
+     - '9000:3000'
+    volumes:
+      - ./grafana-config:/var/lib/grafana
+      - ./config/config.dev.ini:/etc/grafana/grafana.ini
+    network_mode: bridge
+    networks:
+      - gratheon
+networks:
+  gratheon:
