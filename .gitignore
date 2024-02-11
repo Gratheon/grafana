@@ -1,2 +1,3 @@
 config/config.prod.ini
 docker-compose.yml
+influxdb/*

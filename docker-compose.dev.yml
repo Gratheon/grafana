@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   grafana:
-    image: grafana/grafana-oss
+    image: grafana/grafana-oss:10.3.1
     restart: unless-stopped
     environment:
       - GF_DATABASE_NAME=grafana
@@ -19,12 +19,24 @@ services:
       - GF_DATABASE_SSL_MODE=disable
       - GF_LOG_FILTERS=alerting.notifier=debug,alerting.notifier.slack:debug,auth:debug
     ports:
-     - '9000:9000'
+     - 9000:9000
     volumes:
-      - $PWD/grafana/data:/var/lib/grafana
-      - $PWD/grafana/config/config.dev.ini:/etc/grafana/grafana.ini
+      - ./data:/var/lib/grafana
+      - ./config/config.dev.ini:/etc/grafana/grafana.ini
     network_mode: bridge
     networks:
       - gratheon
+
+  influxdb:
+    image: influxdb:latest
+    ports:
+      - '5300:8086'
+    volumes:
+      - ./influxdb:/var/lib/influxdb2:rw
+    network_mode: bridge
+    networks:
+      - gratheon
+
+
 networks:
   gratheon:
