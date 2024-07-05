@@ -28,7 +28,7 @@ services:
       - gratheon
 
   influxdb:
-    image: influxdb:latest
+    image: influxdb:1.8
     ports:
       - '5300:8086'
     volumes:
