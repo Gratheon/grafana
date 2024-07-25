@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  grafana:
+    image: grafana/grafana-oss:10.3.1
+    restart: unless-stopped
+    environment:
+      - GF_DATABASE_NAME=grafana
+      - GF_DATABASE_USER=grafana
+      - GF_DATABASE_PASSWORD=you-cant-make-this-up-77
+      - GF_DATABASE_TYPE=mysql
+      - GF_DATABASE_HOST=localhost:3306
+      - GF_DATABASE_MAX_OPEN_CONN=300
+      - GF_SESSION_PROVIDER=mysql
+      - GF_SERVER_ROOT_URL=https://grafana.gratheon.com/
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,percona-percona-app,jdbranham-diagram-panel,mtanda-histogram-panel,natel-influx-admin-panel
+      - GF_SERVER_ROUTER_LOGGING=true
+      - GF_allow_embedding=true
+      - GF_LOG_CONSOLE_FORMAT=json
+      - GF_DATABASE_SSL_MODE=disable
+      - GF_LOG_FILTERS=alerting.notifier=debug,alerting.notifier.slack:debug,auth:debug
+    ports:
+     - '9000:9000'
+    volumes:
+      - ./data:/var/lib/grafana
+      - ./config/config.dev.ini:/etc/grafana/grafana.ini
+    network_mode: host
+
+  influxdb:
+    image: influxdb:2.7.6
+    ports:
+      - '8086:8086'
+    environment:
+      - DOCKER_INFLUXDB_INIT_BUCKET=beehive_metrics
+      - DOCKER_INFLUXDB_INIT_RETENTION=1w
+      - INFLUXDB_ADMIN_ENABLED=true
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+      - INFLUXDB_HTTP_AUTH_ENABLED=true
+      - INFLUXDB_USER=telegraf
+      - INFLUXDB_USER_PASSWORD=telegraf
+    volumes:
+      - ./influxdb:/var/lib/influxdb2:rw
+    network_mode: host
