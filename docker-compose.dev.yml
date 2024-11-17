@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   grafana:
     image: grafana/grafana-oss:10.3.1
@@ -23,9 +22,7 @@ services:
     volumes:
       - ./data:/var/lib/grafana
       - ./config/config.dev.ini:/etc/grafana/grafana.ini
-    network_mode: bridge
-    networks:
-      - gratheon
+
 
   influxdb:
     image: influxdb:2.7.6
@@ -42,10 +39,3 @@ services:
       - INFLUXDB_USER_PASSWORD=telegraf
     volumes:
       - ./influxdb:/var/lib/influxdb2:rw
-    network_mode: bridge
-    networks:
-      - gratheon
-
-
-networks:
-  gratheon:

@@ -5,5 +5,7 @@ A Grafana image with a few plugins pre-installed
 Make sure to run [mysql](https://github.com/Gratheon/mysql) first.
 Then spin up containers:
 ```bash
-make start
+just start
 ```
+
+Create manually `grafana` database in mysql
