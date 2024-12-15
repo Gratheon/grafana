@@ -1,4 +1,4 @@
 config/config.prod.ini
 influxdb/*
 grafana/data/*
-./data/*
+data/*
