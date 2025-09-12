@@ -2,3 +2,4 @@ config/config.prod.ini
 influxdb/*
 grafana/data/*
 data/*
+docker-compose.prod.yml
