@@ -6,10 +6,9 @@ services:
       - GF_DATABASE_NAME=grafana
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=you-cant-make-this-up-77
-      - GF_DATABASE_TYPE=mysql
-      - GF_DATABASE_HOST=localhost:3306
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=localhost:5432
       - GF_DATABASE_MAX_OPEN_CONN=300
-      - GF_SESSION_PROVIDER=mysql
       - GF_SERVER_ROOT_URL=https://grafana.gratheon.com/
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,percona-percona-app,jdbranham-diagram-panel,mtanda-histogram-panel,natel-influx-admin-panel
       - GF_SERVER_ROUTER_LOGGING=true

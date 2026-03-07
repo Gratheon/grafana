@@ -4,12 +4,11 @@ services:
     restart: unless-stopped
     environment:
       - GF_DATABASE_NAME=grafana
-      - GF_DATABASE_USER=root
+      - GF_DATABASE_USER=test
       - GF_DATABASE_PASSWORD=test
-      - GF_DATABASE_TYPE=mysql
-      - GF_DATABASE_HOST=mysql:3306
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=postgres:5432
       - GF_DATABASE_MAX_OPEN_CONN=300
-      - GF_SESSION_PROVIDER=mysql
       - GF_SERVER_ROOT_URL=http://localhost:9000/
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,percona-percona-app,jdbranham-diagram-panel,mtanda-histogram-panel,natel-influx-admin-panel
       - GF_SERVER_ROUTER_LOGGING=true
@@ -22,3 +21,17 @@ services:
     volumes:
       - ./data:/var/lib/grafana
       - ./config/config.dev.ini:/etc/grafana/grafana.ini
+      - ./provisioning:/etc/grafana/provisioning
+    depends_on:
+      - prometheus
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro

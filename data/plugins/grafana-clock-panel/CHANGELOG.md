@@ -1,5 +1,47 @@
 # Change Log
 
+## 3.2.1
+
+- Fixes React unique child key error
+
+## 3.2.0
+
+- Add `Digital` clock style 
+
+## 3.1.0
+
+- The Clock panel is now available in the following languages:
+  - English (en-US)
+  - Čeština (cs-CZ)
+  - Deutsch (de-DE)
+  - Español (es-ES)
+  - Français (fr-FR)
+  - Magyar (hu-HU)
+  - Bahasa Indonesia (id-ID)
+  - Italiano (it-IT)
+  - 日本語 (ja-JP)
+  - 한국어 (ko-KR)
+  - Nederlands (nl-NL)
+  - Polski (pl-PL)
+  - Português Brasileiro (pt-BR)
+  - Português (pt-PT)
+  - Русский (ru-RU)
+  - Svenska (sv-SE)
+  - Türkçe (tr-TR)
+  - 中文（简体）(zh-Hans)
+  - 中文（繁體）(zh-Hant)
+
+## 3.0.1
+
+- Fixes [#408](https://github.com/grafana/clock-panel/issues/408)
+
+## 3.0.0
+
+- Add translation support for EN, ES an DE. ES an DE translations will be available in later versions.
+- Upgrade to flat ESLint config
+- Drop support for Grafana 8.x.x
+- Changed package manager from `yarn` to `npm`
+
 ## 2.1.8
 
 - Improves migration handling for non-query panels to eliminate error message display
@@ -13,18 +55,23 @@
 - Adds tests for migrations
 
 ## [2.1.2]
+
 - Improving wrapping of the panel elements to be more responsive to different panel sizes https://github.com/grafana/clock-panel/pull/117
 - Fixing a placeholder for the font size field https://github.com/grafana/clock-panel/pull/116
-- 
+-
+
 ## [2.1.1]
+
 - Migrate to create-plugin instead of toolkit
 - Small typo fixes
 - Bump grafana packages / dependencies
 
 ## [2.1.0]
+
 - Added support to set timezone from template variable
 
 ## [2.0.0]
+
 - Prevent clock panel from crashing Grafana 9.x.x
 - Drop support for Grafana 7.x.x
 
