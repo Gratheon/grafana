@@ -3,3 +3,5 @@ influxdb/*
 grafana/data/*
 data/*
 docker-compose.prod.yml
+loki/
+promtail/positions/*
