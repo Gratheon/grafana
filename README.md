@@ -10,12 +10,16 @@ just start
 
 `grafana` database is created by `postgres/init-databases.sql` on first initialization.
 
-## Bundled Prometheus
-`docker-compose.dev.yml` now includes a `prometheus` service and Grafana datasource provisioning.
+## Bundled Prometheus + Loki
+`docker-compose.dev.yml` includes:
+- `prometheus` for metrics
+- `loki` for logs
+- `promtail` to ship Docker container logs into Loki
 
 - Prometheus UI: `http://localhost:9090`
+- Loki API: `http://localhost:3100`
 - Grafana UI: `http://localhost:9000`
-- Provisioned datasource: `Prometheus` (default)
+- Provisioned datasources: `Prometheus` (default), `Loki`
 
 ### Current scrape targets
 - `prometheus:9090`
@@ -23,4 +27,6 @@ just start
 
 ### Notes
 - Prometheus is pull-based. Services expose `/metrics`, and Prometheus scrapes on an interval (currently `15s`).
-- This is the standard setup for in-house infra metrics and works well for your single-node deployment.
+- Loki stores logs and Promtail labels them with Docker metadata (including Compose `service`).
+- Service dashboards include a `Log Lines / sec by Service` panel using Loki to break down logs by service label.
+- This setup expects Docker container log files to be available at `/var/lib/docker/containers` for Promtail.

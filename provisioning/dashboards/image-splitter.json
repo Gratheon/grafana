@@ -100,7 +100,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "sum by (method, route) (rate(user_cycle_http_requests_total[5m]))",
+          "expr": "sum by (method, route) (rate(image_splitter_http_requests_total[5m]))",
           "legendFormat": "{{method}} {{route}}",
           "range": true,
           "refId": "A"
@@ -188,7 +188,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "sum by (method, route) (rate(user_cycle_http_requests_total{status_code=~\"5..\"}[5m]))",
+          "expr": "sum by (method, route) (rate(image_splitter_http_requests_total{status_code=~\"5..\"}[5m]))",
           "legendFormat": "{{method}} {{route}}",
           "range": true,
           "refId": "A"
@@ -277,7 +277,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "histogram_quantile(0.95, sum by (le, method, route) (rate(user_cycle_http_request_duration_seconds_bucket[5m])))",
+          "expr": "histogram_quantile(0.95, sum by (le, method, route) (rate(image_splitter_http_request_duration_seconds_bucket[5m])))",
           "legendFormat": "{{method}} {{route}}",
           "range": true,
           "refId": "A"
@@ -366,7 +366,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "histogram_quantile(0.99, sum by (le, method, route) (rate(user_cycle_http_request_duration_seconds_bucket[5m])))",
+          "expr": "histogram_quantile(0.99, sum by (le, method, route) (rate(image_splitter_http_request_duration_seconds_bucket[5m])))",
           "legendFormat": "{{method}} {{route}}",
           "range": true,
           "refId": "A"
@@ -454,7 +454,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "topk(15, sum by (operation_type, resolver_name) (rate(user_cycle_graphql_resolver_calls_total{status=\"success\"}[5m])))",
+          "expr": "topk(15, sum by (operation_type, resolver_name) (rate(image_splitter_graphql_resolver_calls_total{status=\"success\"}[5m])))",
           "legendFormat": "{{operation_type}}.{{resolver_name}}",
           "range": true,
           "refId": "A"
@@ -542,7 +542,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "topk(15, sum by (operation_type, resolver_name) (rate(user_cycle_graphql_resolver_calls_total{status=\"error\"}[5m])))",
+          "expr": "topk(15, sum by (operation_type, resolver_name) (rate(image_splitter_graphql_resolver_calls_total{status=\"error\"}[5m])))",
           "legendFormat": "{{operation_type}}.{{resolver_name}}",
           "range": true,
           "refId": "A"
@@ -631,7 +631,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "topk(15, histogram_quantile(0.95, sum by (le, operation_type, resolver_name) (rate(user_cycle_graphql_resolver_duration_seconds_bucket{status=\"success\"}[5m]))))",
+          "expr": "topk(15, histogram_quantile(0.95, sum by (le, operation_type, resolver_name) (rate(image_splitter_graphql_resolver_duration_seconds_bucket{status=\"success\"}[5m]))))",
           "legendFormat": "{{operation_type}}.{{resolver_name}}",
           "range": true,
           "refId": "A"
@@ -641,14 +641,456 @@
       "type": "timeseries"
     },
     {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "topk(15, sum by (statement_type, query_shape) (rate(image_splitter_db_queries_total{status=\"success\"}[5m])))",
+          "legendFormat": "{{statement_type}} {{query_shape}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "DB Queries / sec (Top 15)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "s",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 32
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "topk(15, histogram_quantile(0.95, sum by (le, statement_type, query_shape) (rate(image_splitter_db_query_duration_seconds_bucket{status=\"success\"}[5m]))))",
+          "legendFormat": "{{statement_type}} {{query_shape}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "DB Query p95 Latency (Top 15)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 40
+      },
+      "id": 10,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "topk(20, sum by (step) (rate(image_splitter_processing_step_total{status=\"success\"}[5m])))",
+          "legendFormat": "{{step}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Processing Steps / sec (Top 20)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 40
+      },
+      "id": 11,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "topk(20, sum by (step) (rate(image_splitter_processing_step_total{status=\"error\"}[5m])))",
+          "legendFormat": "{{step}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Processing Step Errors / sec (Top 20)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "s",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "topk(20, histogram_quantile(0.95, sum by (le, step) (rate(image_splitter_processing_step_duration_seconds_bucket{status=\"success\"}[5m]))))",
+          "legendFormat": "{{step}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Processing Step p95 Latency (Top 20)",
+      "type": "timeseries"
+    },
+    {
       "datasource": "Loki",
       "gridPos": {
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 56
       },
-      "id": 8,
+      "id": 13,
       "options": {
         "dedupStrategy": "none",
         "enableLogDetails": true,
@@ -662,7 +1104,7 @@
       "targets": [
         {
           "editorMode": "code",
-          "expr": "{service=~\"user-cycle\"}",
+          "expr": "{service=~\"image-splitter\"}",
           "queryType": "range",
           "refId": "A"
         }
@@ -675,7 +1117,7 @@
   "schemaVersion": 39,
   "style": "dark",
   "tags": [
-    "user-cycle",
+    "image-splitter",
     "prometheus",
     "graphql",
     "loki"
@@ -689,8 +1131,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "user-cycle",
-  "uid": "dbf4287b-54ef-4f43-adda-d1fea6cc6f71",
+  "title": "image-splitter",
+  "uid": "9f2f276a-3d70-4fc6-b9d8-8beec4eb27b6",
   "version": 1,
   "weekStart": ""
 }
