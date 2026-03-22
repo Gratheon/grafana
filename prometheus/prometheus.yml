@@ -13,3 +13,33 @@ scrape_configs:
     static_configs:
       - targets:
           - user-cycle:4000
+
+  - job_name: image-splitter
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - image-splitter:8800
+
+  - job_name: swarm-api
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - swarm-api:8100
+
+  - job_name: telemetry-api
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - telemetry-api:8600
+
+  - job_name: event-stream-filter
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - event-stream-filter:8300
+
+  - job_name: gate-video-stream
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - gate-video-stream:8900

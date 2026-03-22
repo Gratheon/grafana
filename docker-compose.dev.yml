@@ -24,6 +24,7 @@ services:
       - ./provisioning:/etc/grafana/provisioning
     depends_on:
       - prometheus
+      - loki
 
   prometheus:
     image: prom/prometheus:v2.54.1
@@ -35,3 +36,26 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  loki:
+    image: grafana/loki:2.9.13
+    restart: unless-stopped
+    command:
+      - -config.file=/etc/loki/local-config.yaml
+    ports:
+      - 3100:3100
+    volumes:
+      - ./loki:/loki
+
+  promtail:
+    image: grafana/promtail:2.9.13
+    restart: unless-stopped
+    command:
+      - -config.file=/etc/promtail/config.yml
+    volumes:
+      - ./promtail/config.yml:/etc/promtail/config.yml:ro
+      - ./promtail/positions:/tmp/positions
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    depends_on:
+      - loki
